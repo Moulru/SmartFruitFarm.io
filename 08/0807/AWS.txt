@@ -1,0 +1,17 @@
+클라우드에 접속하려하니 만들어둔 인스턴스가 종료한적이 없는데 삭제되어있었음.
+또한 새로운 인스턴스를 생성하려니 전과같은 사양에 옵션인데 다음과 같은 오류가 나오며 생성이 되지않음.
+(you have requested more vcpu capacity than your current vcpu limit of 0 allows for the instance bucket that the specified instance type belongs to. please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.)
+
+한이음쪽에 문의해본 결과,
+
+1. 인스턴스가 맘대로 삭제된 것
+계정에 접속하여 확인 결과 생성했던 EC2는 미국 동부(버지니아 북부)리전에 "스팟" 요금제로 g2.8xlarge를 생성하셨셨습니다.
+스팟 요금제는 온디맨드 요금에 비해 매우 저렴한 모델입니다.
+가격이 저렴한 대신 입찰방식으로 EC2를 소유하게 되어, 구매하신 가격보다 높은 가격으로 해당 스팟을 구매하실 경우 생성한 EC2가 종료되어 높은 가격으로 구입한 계정으로 할당되게 됩니다. (쉽게말해 빼앗기게 됩니다.)
+때문에 스팟 요금제는 휘발성 워크로드에 적합하며 일시적인 인스턴스 증가에 주로 사용되는 요금제입니다.
+
+2. 새로운 인스턴스 생성이 안되는 이유
+AWS는 P타입, G타입의 경우 할당량을 0으로 기본 지정해둡니다.
+만약 GPU 서버가 필요하여 P타입, G타입을 구매하시고자 한다면, AWS에 할당량 증가건으로 case open을 진행한 뒤, 증가된 할당량만큼의 cpu로 p타입 혹은 g타입을 생성할 수 있습니다.
+또한 p타입과 g타입의 경우 인스턴스의 시간당 가격이 높게 책정되어있어 예산 초과의 가능성이 높습니다.
+할당된 예산 초과 시 자부담금이 발생할 수 있기에 반드시 필요한 경우에만 저희가 case open을 진행하고 있습니다.

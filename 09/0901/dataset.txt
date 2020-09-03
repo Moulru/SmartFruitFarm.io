@@ -1,0 +1,50 @@
+@사과 데이터셋 준비@
+
+1. 학습시킬 구조화된 폴더와 그 폴더안에 해당 이미지를 넣는다.
+  TRAIN_DIR / 사과 A등급 / A등급사과001.jpg
+  TRAIN_DIR / 사과 A등급 / A등급사과002.jpg
+  TRAIN_DIR / 사과 A등급 / A등급사과003.jpg ~~
+  TRAIN_DIR / 사과 B등급 / B등급사과001.jpg 
+  TRAIN_DIR / 사과 B등급 / B등급사과002.jpg ~~
+  
+  여기서 중요한점은 폴더이름이 'A등급사과'이고 이미지 파일 이름이 'B등급사과'여도 'A등급사과'로 학습된다
+  
+2. 평가확인할 구조화된 폴더와 이미지를 넣는다.
+  VALIDATION_DIR / 사과 A등급 / A등급사과01.jpg ~~
+  VALIDATION_DIR / 사과 B등급 / B등급사과01.jpg ~~
+  
+3. 변환된 파일들이 저장될 폴더를 생성한다. (TFR_DIR 생성)
+
+4. 학습할 이미지의 레이블을 설정한다. 
+  원하는 위치에 LABLES.txt 를 만들어 위에서만든 폴더의 이름을 적어준다.
+  ---LABLES.txt---
+  사과A등급
+  사과B등급
+  사과C등급
+  사과D등급
+  ----------------
+  
+  *레이블은 abcd 순으로 정렬하여 적어준다.
+  
+5. inception 최상위 폴더로 이동하여 터미널을 연다.
+
+6. 환경변수(경로)를 설정해준다.
+  farm@linux:~$ TRAIN_DIR=$HOME/work/TRAIN_DIR/
+  farm@linux:~$ VALIDATION_DIR=$HOME/work/VALIDATION_DIR/
+  farm@linux:~$ OUTPUT_DIR=$HOME/work/TFR_DIR/
+  farm@linux:~$ LABLES_FILE=$HOME/work/LABELS
+  
+  LABELS 환경변수는 맨뒤에 '/'가 없어야한다. (디렉터리가 아닌 파일을 지정해주기 때문)
+  
+7. bazel을 통해 이미지 데이터 스크립트 빌드
+  $ bazel build inception/build_image_data
+  $ bazel-bin/inception/build_image_data   --train_directory="${TRAIN_DIR}"   --validation_directory="${VALIDATION_DIR}"   --output_directory="${OUTPUT_DIRECTORY}"   --labels_file="${LABELS_FILE}"   --train_shards=128   --validation_shards=24   --num_threads=8
+  
+  ##정보
+  --train_shards=128      // 변환된 train 이미지를 128개로
+  --validation_shards=24  // validation 데이터를 24개로 출력
+  --num_threads=8         // 스레드 8개 사용
+  
+8. 변환된 데이터 확인하기
+  cd $HOME/work/TFR_DIR
+  해당 디렉터리로 이동하면 변환된 파일들이 있다.

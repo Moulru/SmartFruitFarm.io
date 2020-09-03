@@ -1,0 +1,5 @@
+@ 텐서플로우를 이용하여 이미지 학습과 이미지 추론하기
+https://gusrb.tistory.com/16?category=664299
+
+@ 이미지 추론 스크립트를 이용하여 이미지 처리 서버 만들기
+https://gusrb.tistory.com/47

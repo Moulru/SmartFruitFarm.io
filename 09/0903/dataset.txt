@@ -16,8 +16,8 @@
 3. 변환된 파일들이 저장될 폴더를 생성한다. (TFR_DIR 생성)
 
 4. 학습할 이미지의 레이블을 설정한다. 
-  원하는 위치에 LABLES.txt 를 만들어 위에서만든 폴더의 이름을 적어준다.
-  ---LABLES.txt---
+  원하는 위치에 LABELS.txt 를 만들어 위에서만든 폴더의 이름을 적어준다.
+  ---LABELS.txt---
   사과A등급
   사과B등급
   사과C등급
@@ -32,7 +32,7 @@
   farm@linux:~$ TRAIN_DIR=$HOME/work/TRAIN_DIR/
   farm@linux:~$ VALIDATION_DIR=$HOME/work/VALIDATION_DIR/
   farm@linux:~$ OUTPUT_DIR=$HOME/work/TFR_DIR/
-  farm@linux:~$ LABLES_FILE=$HOME/work/LABELS
+  farm@linux:~$ LABELS_FILE=$HOME/work/LABELS
   
   LABELS 환경변수는 맨뒤에 '/'가 없어야한다. (디렉터리가 아닌 파일을 지정해주기 때문)
   

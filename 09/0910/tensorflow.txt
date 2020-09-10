@@ -1,0 +1,42 @@
+@텐서플로우 retrain.py로 이미지 학습@
+  참고 : https://reniew.github.io/04/
+       : https://gusrb.tistory.com/16?category=664299
+
+ 1. 주피터노트북에 접속한 후 이미지 디렉터리 생성 및 학습할 이미지 업로드함
+  주피터노트북은 미리 자가인증설정을 완료하여(오늘자 jupyter.txt 참고) 주소와 패스워드만으로 접속하면 된다. ( https://3.34.202.249:8888/)
+  
+  1) $HOME/ photos/ 위치에 학습에 이용할 디렉터리 TRAIN_DIR/을 생성하여 데이터셋 업로드 완료
+  2) 이미지학습 후 변환된 이미지파일이 저장될 디렉터리 생성 ($HOME/photos/VALIDATION_DIR/)
+  3) 이미지학습 후 인셉션 모델을 다운로드 할 디렉터리 생성 ($HOME/photos/inception/)
+  4) 이미지학습 후 tensorboard에 사용될 로그파일을 저장할 디렉터리 생성 ($HOME/photos/log/)
+  
+ 2. retrain.py 파일 깃헙에서 가져옴
+  기본경로($HOME/)에 저장할 디렉터리 생성 후 깃헙주소에서 clone
+  
+   mkdir ~/example_code
+   cd ~/example_code
+   curl -LO https://github.com/tensorflow/hub/raw/r0.1/examples/image_retraining/retrain.py
+   
+ 3. retrain.py 파일 옵션 설정 및 실행
+ 
+  python ~/example_code$ python ./retrain.py \
+  --bottleneck_dir=$HOME/photos/VALIDATION_DIR/ \
+  --how_many_training_steps 500 \
+  --model_dir=$HOME/photos/inception/ \
+  --output_graph=$HOME/photos/retrained_graph.pb \
+  --output_lables=$HOME/photos/retrained_labels.txt \
+  --image_dir=$HOME/photos/TRAIN_DIR/ \
+  --summaries_dir=$HOME/photos/log/
+  
+  위의 명령어 입력함 --> 실행오류
+  
+  (++ 명령어 설명)
+  --bottleneck_dir = 학습할 사진을 변환해서 저장할 폴더
+  --how_many_training_steps 5000  = 스탭 설정
+  --model_dir = inception 모델을 다운로드 할 경로
+  --output_graph = 학습 후 이미지추론에 사용할 학습된 바이너리 파일(.pb) 저장 경로
+  --output_labels = 학습 후 이미지추론에 사용할 레이블 파일 저장 경로
+  --image_dir = 원본 이미지가 저장된 경로
+  --summaries_dir = tensorboard에 사용될 로그 파일 저장 경로
+  
+  오류 내용은 오늘자 업로드한 retrain_err.png 파일 참고

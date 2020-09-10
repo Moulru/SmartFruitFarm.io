@@ -18,7 +18,7 @@ $ ipython
  In [2]: passwd()
  Enter password: 패스워드
  Verify password: 패스워드
- sha1:6600c5733ef3:b683d6afba16b3403fdf9a75ac38b7d8e7f733bb
+ 'sha1:c6b5556a3d51:05e93841ecebc2bf5298d6b92b07fca2361dacdd'
  In [3]: exit
  
 (3) https 적용을 위한 키파일 생성
@@ -48,7 +48,7 @@ $ sudo vi /home/ubuntu/.jupyter/jupyter_notebook_config.py
 
 c.NotebookApp.ip = '0.0.0.0'
 c.NotebookApp.open_browser = False 
-c.NotebookApp.password = 'sha1:6600c5733ef3:b683d6afba16b3403fdf9a75ac38b7d8e7f733bb'
+c.NotebookApp.password = 'sha1:c6b5556a3d51:05e93841ecebc2bf5298d6b92b07fca2361dacdd'
 c.NotebookApp.certfile = '/home/ubuntu/cert.pem'
 c.NotebookApp.port = 8888
 
@@ -60,3 +60,9 @@ $ nohup jupyter notebook &
 
 (참고 : https://datascienceschool.net/view-notebook/a6e840e0c0274fcda7b9cac9e49f1735/)
 
+
+
+### 내 주피터 노트북 정보 ###
+접속주소 : https://3.34.202.249:8888/
+쉘 : 'sha1:c6b5556a3d51:05e93841ecebc2bf5298d6b92b07fca2361dacdd'
+패스워드 : 1234

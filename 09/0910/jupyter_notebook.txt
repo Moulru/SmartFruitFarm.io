@@ -52,7 +52,8 @@ c.NotebookApp.password = 'sha1:c6b5556a3d51:05e93841ecebc2bf5298d6b92b07fca2361d
 c.NotebookApp.certfile = '/home/ubuntu/cert.pem'
 c.NotebookApp.port = 8888
 
-마지막 줄은 주피터 노트북을 연결하기위한 포트번호다. 보안을 위해서는 디폴트 포트번호인 8888이 아니라 다른 번호로 (예: 9999) 변경하는 것이 좋다. ESC 키를 눌러 vi의 명령어 모드로 나온 다음 w 키와 q를 눌러서 저장하고 vi 에디터를 종료한다.
+마지막 줄은 주피터 노트북을 연결하기위한 포트번호다.
+ESC 키를 눌러 vi의 명령어 모드로 나온 다음 :w 키와 :q를 눌러서 저장하고 vi 에디터를 종료한다.
 
 이제 다음 명령으로 주피터 노트북 서비스를 시작한다.
 

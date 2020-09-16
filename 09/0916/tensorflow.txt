@@ -1,6 +1,23 @@
-@inception-v3 retrain.py를 이용하여 이미지 학습@
+@inception-v3 retrain.py를 이용하여 이미지 학습성공@
 
-1. 
+이전에 실행했던 retrain.py의 실행오류를 검색하며 여러번 수정하고 실행한 결과 이미지학습을 성공시킬수 있었다.
+
+ #err1.  ImportError: cannot import name 'feature_column_v2'
+ #err2.  no module named 'tensorflow.contrib'
+ 둘 다 텐서플로우 버전과 관련되어 발생한 에러이다. 텐서플로우 1.14 버전에서 작동이 가능하다.
+ 
+1. tensorflow 1.14로 재설치
+ 
+ pip uninstall tensorflow
+ pip install --upgrade tensorflow==1.14
+ 
+2. retrain.py가 있는 텐서플로우 inception-v3 폴더 깃헙에서 clone하기
+
+ git clone https://github.com/tensorflow/hub.git
+ 
+ retrain.py 파일이 최신화 되어 깃헙 주소가 바뀌었으니 해당 주소에서 받아야한다.
+ 
+3. 변경된 경로를 수정한 뒤 retrain.py 재실행
 
 python $HOME/hub/examples/image_retraining/retrain.py \
   --bottleneck_dir=$HOME/photos/VALIDATION_DIR/ \
@@ -10,3 +27,5 @@ python $HOME/hub/examples/image_retraining/retrain.py \
   --output_lables=$HOME/photos/retrained_labels.txt \
   --image_dir=$HOME/photos/TRAIN_DIR/ \
   --summaries_dir=$HOME/photos/log/
+
+ 이미지학습 스크립트가 정상 작동하는걸 확인했다.

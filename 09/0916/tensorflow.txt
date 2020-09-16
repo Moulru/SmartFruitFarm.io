@@ -1,0 +1,12 @@
+@inception-v3 retrain.py를 이용하여 이미지 학습@
+
+1. 
+
+python $HOME/hub/examples/image_retraining/retrain.py \
+  --bottleneck_dir=$HOME/photos/VALIDATION_DIR/ \
+  --how_many_training_steps 500 \
+  --model_dir=$HOME/photos/inception/ \
+  --output_graph=$HOME/photos/retrained_graph.pb \
+  --output_lables=$HOME/photos/retrained_labels.txt \
+  --image_dir=$HOME/photos/TRAIN_DIR/ \
+  --summaries_dir=$HOME/photos/log/

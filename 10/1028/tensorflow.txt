@@ -8,4 +8,48 @@
  $ pip install "tensorflow 2.0이상의 버전" // pip install tensorflow==2.0.0
  $ pip install "tensorflow-hub [make_image_classifier]을 사용하기위한 0.6이상의 버전" // pip install tensorflow-hub==0.6
 
-2. 
+2. 기본적으로 텐서허브안에 make_image_classifier.py가 들어있기때문에 사용만 하면된다.
+ $ make_image_classifier \
+  --image_dir my_image_dir \
+  --tfhub_module https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4 \
+  --image_size 224 \
+  --saved_model_dir my_dir/new_model \
+  --labels_output_file class_labels.txt \
+  --tflite_output_file new_mobile_model.tflite \
+  --summaries_dir my_log_dir
+  
+  image_dir : 내가 학습시킬 이미지 디렉터리 경로
+  tfhub_module : 허브 모델 주소
+  image_size : 학습후 이미지사이즈 (픽셀)
+  saved_model_dir : 학습 후 저장될 모델의 경로
+  labels_output_file : 학습 후 저장될 라벨의 경로
+  tflite_output_file : 학습 후 저장될 tflite파일의 경로, 추후 tflite파일로 이미지 분석을 진행가능 (임베디드에서도 가능)
+  summaries_dir : log를 저장할 경로. summaries_dir 변수를 이해할 수 없다는 에러가 나와 제외하고 진행하였음.
+  
+3. label_image.py을 이용하여 이미지 분석하기
+ [코드참고 2]의 링크에 있는 label_image.py를 사용하여 이미지를 분석할 수 있음.
+ python3 label_image.py \
+  --model_file /tmp/mobilenet_v1_1.0_224.tflite \
+  --label_file /tmp/labels.txt \
+  --image /tmp/grace_hopper.bmp
+  
+  python3를 사용하고, label_image.py의 경로를 기본설정인 홈에서 다른곳으로 바꾸면 에러가 나와 홈에서 진행했음.
+  model_file : 2번에서 만든 tflite파일의 경로
+  label_file : 2번에서 만든 label_file의 경로
+  image : 분석에 사용하고싶은 이미지의 경로
+  
+  (결과)
+  0.728693: military uniform
+  0.116163: Windsor tie
+  0.035517: bow tie
+  0.014874: mortarboard
+  0.011758: bolo tie
+  
+  다음과 같이 나오면 성공이다.
+  
+
+
+##발생했던 ERROR
+1) no module named numpy : numpy 라이브러리가 없어 생성된다고 함, pip install numpy가 아닌 python -m pip install numpy로 해결
+2) no module named PIL : 마찬가지로 python -m pip install pillow 를 사용하여 설치하면 해결가능
+3) label_image.py의 예제는 작동하지만, 내 이미지를 넣었을때의 label_image.py는 작동하지 않았을때 : label_imge.py의 경로를 기본경로(~/)로 변경하니 에러가 사라짐

@@ -1,0 +1,11 @@
+##개인PC에 우분투 18버전으로 진행됨##
+
+코드참고 1: https://github.com/tensorflow/hub/tree/master/tensorflow_hub/tools/make_image_classifier
+코드참고 2: https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite/examples/python
+
+1. retrain.py가 너무 오래된 코드라 학습 및 호환이 잘 안되기 때문에 retrain.py의 최신 코드인 make_image_classifier.py를 사용함
+ (make_image_classifier.py는 텐서플로우2.0과 텐서허브0.6에서 작동함)
+ $ pip install "tensorflow 2.0이상의 버전" // pip install tensorflow==2.0.0
+ $ pip install "tensorflow-hub [make_image_classifier]을 사용하기위한 0.6이상의 버전" // pip install tensorflow-hub==0.6
+
+2. 

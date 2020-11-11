@@ -1,0 +1,21 @@
+@ 학습 옵션
+$ make_image_classifier \
+  --image_dir my_image_dir \
+  --tfhub_module https://tfhub.dev/google/tf2-preview/mobilenet_v2/feature_vector/4 \
+  --image_size 224 \
+  --saved_model_dir my_dir/new_model \
+  --labels_output_file class_labels.txt \
+  --tflite_output_file new_mobile_model.tflite \
+  --train_epochs 500 \
+  --learning_rate 0.01 \
+  --momentum 0.0 \
+
+  image_dir : 내가 학습시킬 이미지 디렉터리 경로
+  tfhub_module : 허브 모델 주소
+  image_size : 학습후 이미지사이즈 (픽셀)
+  saved_model_dir : 학습 후 저장될 모델의 경로
+  labels_output_file : 학습 후 저장될 라벨의 경로
+  tflite_output_file : 학습 후 저장될 tflite파일의 경로, 추후 tflite파일로 이미지 분석을 진행가능 (임베디드에서도 가능)
+  summaries_dir : log를 저장할 경로. summaries_dir 변수를 이해할 수 없다는 에러가 나와 제외하고 진행하였음.
+  train_epochs : 훈련 횟수 (기본값 5)
+  learning_rate , momentum : SGD 최적화

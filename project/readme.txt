@@ -1,2 +1,2 @@
-# /Thesis/ : 논문
+# /thesis/ : 논문
 # /tensorflow/ : 학습 결과물

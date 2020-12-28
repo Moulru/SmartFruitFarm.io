@@ -9,4 +9,7 @@
 @ AWS클라우드 공인아이피 : 매번 인스턴스에서 ip확인 필요
 @ 캡스톤디자인 및 한이음 프로젝트
 
-@ /project/ 결과물 항목
+@ project 결과물
+ 1) /project/thesis : 논문
+ 2) /project/tensorflow : 학습 결과물
+ 3) /dataset : 촬영한 국내 사과 품종 데이터 (부사 / 홍로 / 시나노)
